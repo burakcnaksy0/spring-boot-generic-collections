@@ -1,12 +1,12 @@
 package com.burakcanaksoy.layer1.user;
 
+import com.burakcanaksoy.layer1.GenericMapper;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
-
 @Configuration
-public class UserMapper {
-    public User toEntity(UserCreateRequest request){
+public class UserMapper implements GenericMapper<User , UserCreateRequest , UserResponse> {
+    @Override
+    public User mapToEntity(UserCreateRequest request) {
         if (request == null){
             return null;
         }
@@ -21,28 +21,20 @@ public class UserMapper {
                 .build();
     }
 
-    public UserResponse toResponse(User user){
-        if (user == null){
+    @Override
+    public UserResponse mapToResponse(User entity) {
+        if (entity == null){
             return null;
         }
         return UserResponse.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .username(user.getUsername())
-                .email(user.getEmail())
-                .phone(user.getPhone())
-                .age(user.getAge())
-                .active(user.isActive())
+                .id(entity.getId())
+                .firstName(entity.getFirstName())
+                .lastName(entity.getLastName())
+                .username(entity.getUsername())
+                .email(entity.getEmail())
+                .phone(entity.getPhone())
+                .age(entity.getAge())
+                .active(entity.isActive())
                 .build();
-    }
-
-    public List<UserResponse> toResponseList(List<User> userList){
-        if (userList == null || userList.isEmpty()){
-            return List.of();
-        }
-        return userList.stream()
-                .map(this::toResponse)
-                .toList();
     }
 }

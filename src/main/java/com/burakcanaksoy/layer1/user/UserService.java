@@ -14,21 +14,21 @@ public class UserService {
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-        return userMapper.toResponse(user);
+        return userMapper.mapToResponse(user);
     }
 
     public UserResponse createUser(UserCreateRequest request) {
         checkEmailExists(request.getEmail());
         checkPhoneExists(request.getPhone());
 
-        User user = userMapper.toEntity(request);
+        User user = userMapper.mapToEntity(request);
         userRepository.save(user);
-        return userMapper.toResponse(user);
+        return userMapper.mapToResponse(user);
     }
 
     public List<UserResponse> getAllUsers() {
         List<User> users = userRepository.findAll();
-        return userMapper.toResponseList(users);
+        return userMapper.mapToResponseList(users);
     }
 
     public void deleteUser(Long id) {
