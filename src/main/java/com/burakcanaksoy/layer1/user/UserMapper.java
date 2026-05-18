@@ -1,10 +1,10 @@
 package com.burakcanaksoy.layer1.user;
 
-import com.burakcanaksoy.layer1.BaseMapper;
+import com.burakcanaksoy.layer1.base.BaseMapper;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class UserMapper implements BaseMapper<User , UserCreateRequest , UserResponse> {
+public class UserMapper implements BaseMapper<UserCreateRequest , User , UserResponse> {
     @Override
     public User mapToEntity(UserCreateRequest request) {
         if (request == null){
