@@ -3,6 +3,8 @@ package com.burakcanaksoy.layer1.user;
 import com.burakcanaksoy.layer1.base.BaseMapper;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDateTime;
+
 @Configuration
 public class UserMapper implements BaseMapper<UserCreateRequest , User , UserResponse> {
     @Override
@@ -35,6 +37,8 @@ public class UserMapper implements BaseMapper<UserCreateRequest , User , UserRes
                 .phone(entity.getPhone())
                 .age(entity.getAge())
                 .active(entity.isActive())
+                .createdAt(entity.getCreatedAt())
+                .updatedAt(entity.getUpdatedAt())
                 .build();
     }
 }

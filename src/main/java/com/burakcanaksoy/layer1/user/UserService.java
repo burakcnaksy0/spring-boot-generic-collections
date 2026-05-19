@@ -1,51 +1,35 @@
 package com.burakcanaksoy.layer1.user;
 
-import lombok.RequiredArgsConstructor;
+import com.burakcanaksoy.layer1.base.senior.service.AbstractCrudService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-@RequiredArgsConstructor
-public class UserService {
+public class UserService extends AbstractCrudService<UserCreateRequest,User,UserResponse,Long> {
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
-    public UserResponse getUserById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-        return userMapper.mapToResponse(user);
+    public UserService(UserRepository repository,UserMapper mapper){
+        super(repository,mapper);
+        this.userRepository = repository;
     }
 
-    public UserResponse createUser(UserCreateRequest request) {
-        checkEmailExists(request.getEmail());
-        checkPhoneExists(request.getPhone());
 
-        User user = userMapper.mapToEntity(request);
-        userRepository.save(user);
-        return userMapper.mapToResponse(user);
+    @Override
+    public UserResponse create(UserCreateRequest userCreateRequest) {
+        checkEmailExists(userCreateRequest.getEmail());
+        checkPhoneExists(userCreateRequest.getPhone());
+        return super.create(userCreateRequest);
     }
 
-    public List<UserResponse> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return userMapper.mapToResponseList(users);
-    }
-
-    public void deleteUser(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-        userRepository.delete(user);
-    }
-
-    private void checkEmailExists(String email){
-        if (userRepository.existsByEmail(email)){
-            throw new UserAlreadyExistsException("User already exists with email : "+ email);
+    private void checkEmailExists(String email) {
+        if (userRepository.existsByEmail(email)) {
+            throw new UserAlreadyExistsException("User already exists with email : " + email);
         }
     }
 
-    private void checkPhoneExists(String phone){
-        if (userRepository.existsByPhone(phone)){
-            throw new UserAlreadyExistsException("User already exists with email : "+ phone);
+    private void checkPhoneExists(String phone) {
+        if (userRepository.existsByPhone(phone)) {
+            throw new UserAlreadyExistsException("User already exists with phone : " + phone);
         }
     }
+
 }
