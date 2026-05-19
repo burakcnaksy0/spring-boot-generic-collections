@@ -1,6 +1,6 @@
 package com.burakcanaksoy.layer1.user;
 
-import com.burakcanaksoy.layer1.base.senior.service.AbstractCrudService;
+import com.burakcanaksoy.layer1.base.advanced.service.AbstractCrudService;
 import org.springframework.stereotype.Service;
 
 @Service

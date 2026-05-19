@@ -1,7 +1,7 @@
-package com.burakcanaksoy.layer1.base.senior.service;
+package com.burakcanaksoy.layer1.base.advanced.service;
 
 import com.burakcanaksoy.layer1.base.BaseMapper;
-import com.burakcanaksoy.layer1.base.senior.repository.ReadOnlyRepository;
+import com.burakcanaksoy.layer1.base.advanced.repository.ReadOnlyRepository;
 
 import java.util.List;
 import java.util.Optional;

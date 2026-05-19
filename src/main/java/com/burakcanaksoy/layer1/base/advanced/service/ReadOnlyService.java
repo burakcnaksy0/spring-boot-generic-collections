@@ -1,4 +1,4 @@
-package com.burakcanaksoy.layer1.base.senior.service;
+package com.burakcanaksoy.layer1.base.advanced.service;
 
 import java.util.*;
 

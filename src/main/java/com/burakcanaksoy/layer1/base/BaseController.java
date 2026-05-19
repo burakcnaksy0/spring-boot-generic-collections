@@ -1,6 +1,6 @@
 package com.burakcanaksoy.layer1.base;
 
-import com.burakcanaksoy.layer1.base.senior.service.AbstractCrudService;
+import com.burakcanaksoy.layer1.base.advanced.service.AbstractCrudService;
 import com.burakcanaksoy.layer1.user.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.burakcanaksoy.layer1.base.senior.service;
+package com.burakcanaksoy.layer1.base.advanced.service;
 
 import com.burakcanaksoy.layer1.base.BaseMapper;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.burakcanaksoy.layer1.base.senior.repository;
+package com.burakcanaksoy.layer1.base.advanced.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
