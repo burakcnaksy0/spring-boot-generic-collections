@@ -1,6 +1,7 @@
 package com.burakcanaksoy.layer1.base.advanced.service;
 
 import com.burakcanaksoy.layer1.base.BaseMapper;
+import com.burakcanaksoy.layer1.base.advanced.exception.ResourceNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public abstract class AbstractCrudService<Request, Entity, Response, ID>
     @Override
     public Response getById(ID id) {
         Optional<Entity> entity = repository.findById(id);
+        if (entity.isEmpty()){
+            throw new ResourceNotFoundException("Resource not found with this id : "+ id);
+        }
         return mapper.mapToResponse(entity.get());
     }
 
@@ -39,6 +43,9 @@ public abstract class AbstractCrudService<Request, Entity, Response, ID>
     @Override
     public void delete(ID id) {
         Optional<Entity> entity = repository.findById(id);
+        if (entity.isEmpty()){
+            throw new ResourceNotFoundException("Resource not found with this id : "+ id);
+        }
         repository.delete(entity.get());
     }
 }
